@@ -1,0 +1,76 @@
+[tool.poetry]
+name = "eko-py"
+version = "0.1.0"
+description = "Lightweight AI workflow engine"
+authors = ["Nasaruddin"]
+readme = "README.md"
+
+# ✅ Only include existing package: eko
+[[tool.poetry.packages]]
+include = "eko"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+openai = "^1.12"
+pydantic = "^2.5"
+typer = "^0.9"
+python-dotenv = "^1.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.0"
+respx = "^0.22"          # ✅ Fixed: 0.22 is valid
+httpx = "^0.25"
+coverage = "^7.5"
+pytest-cov = "^4.1"
+
+[tool.poetry.scripts]
+eko = "eko.interface.cli:app"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.coverage.run]
+source = ["eko"]
+omit = [
+    "tests/*",
+    "*/__init__.py"
+]
+branch = true
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:"
+]
+precision = 2
+show_missing = true
+fail_under = 90
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+include = '\.pyi?$'
+extend-exclude = []
+
+[tool.mypy]
+mypy_path = ["eko"]
+files = ["eko"]
+strict = true
+warn_unused_configs = true
+show_error_codes = true
+pretty = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = "Test"
+python_functions = "test"
+addopts = "-v --cov --cov-report=term-missing"
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/your-username/eko-py/issues"
+"Source" = "https://github.com/your-username/eko-py"
