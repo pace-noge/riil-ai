@@ -3,7 +3,7 @@
 import pytest
 from unittest.mock import AsyncMock, patch
 from pydantic import BaseModel
-from eko.infrastructure.llms.openai import OpenAIStep
+from riil.infrastructure.llms.openai import OpenAIStep
 
 
 class TestSchema(BaseModel):

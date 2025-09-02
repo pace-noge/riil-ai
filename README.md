@@ -1,4 +1,4 @@
-# 🚀 riil-py
+# 🚀 riil-ai The Lightweight AI Workflow Engine
 
 **Lightweight, extensible AI workflow engine**  
 Build and run AI pipelines with clean architecture, schema enforcement, and resilience.

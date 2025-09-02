@@ -3,7 +3,7 @@
 Base LLM interface.
 """
 
-from eko.domain.step import Step
+from riil.domain.step import Step
 
 
 class LLM(Step):

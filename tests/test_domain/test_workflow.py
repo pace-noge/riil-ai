@@ -1,8 +1,8 @@
 # tests/test_domain/test_workflow.py
 """Test Workflow class."""
 import pytest
-from eko.domain.workflow import Workflow
-from eko.domain.step import Step
+from riil.domain.workflow import Workflow
+from riil.domain.step import Step
 
 
 class MockStep(Step):

@@ -1,0 +1,16 @@
+name: joke-agent
+description: Tells jokes with style
+author: nasaruddin
+version: 0.1.0
+tags: [fun, agent]
+steps:
+  - prompt: "Tell me a {{style}} joke about {{topic}}"
+    rules: [funny]
+    llm:
+      provider: openai
+      model: gpt-3.5-turbo
+    output_key: joke
+  - prompt: "Make it one sentence: {{joke}}"
+    llm:
+      provider: openai
+      model: gpt-3.5-turbo

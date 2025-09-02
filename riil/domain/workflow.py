@@ -1,36 +1,52 @@
-# eko/domain/workflow.py
-"""
-Workflow engine that orchestrates a sequence of steps.
-"""
-
+# riil/domain/workflow.py
+import uuid
 from typing import List
-from eko.domain.step import Step
-from eko.domain.types import Inputs, Outputs
+from .step import Step
+from .types import Inputs, Outputs
+from riil.core.callback import Callback
 
 
 class Workflow:
-    """
-    A sequence of steps executed in order.
-    Maintains context between steps.
-    """
-
-    def __init__(self, name: str):
+    def __init__(self, name: str, callbacks: List[Callback] = None):
         self.name = name
         self.steps: List[Step] = []
+        self.callbacks = callbacks or []
 
     def add_step(self, step: Step):
-        """Add a step to the workflow."""
         self.steps.append(step)
         return self
 
     async def run(self, inputs: Inputs) -> Outputs:
-        """
-        Execute all steps in sequence.
-        Each step's output is merged into the context.
-        """
+        # Add trace context
         context = inputs.copy()
+        context["__trace_id"] = str(uuid.uuid4())
+
+        # Notify start
+        for cb in self.callbacks:
+            await cb.on_workflow_start(self, inputs)
+
         for step in self.steps:
-            result = await step.run(context)
-            output_key = getattr(step, "output_key", "output")
-            context[output_key] = result["output"]
+            # Add step context
+            step_id = str(uuid.uuid4())
+            context["__step_id"] = step_id
+
+            for cb in self.callbacks:
+                await cb.on_step_start(step, context, context)
+
+            try:
+                result = await step.run(context)
+                output_key = getattr(step, "output_key", "output")
+                context[output_key] = result["output"]
+
+                for cb in self.callbacks:
+                    await cb.on_step_end(step, result, context)
+            except Exception as e:
+                for cb in self.callbacks:
+                    await cb.on_error(step, e, context)
+                raise
+
+        # Notify end
+        for cb in self.callbacks:
+            await cb.on_workflow_end(self, context)
+
         return context

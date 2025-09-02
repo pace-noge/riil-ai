@@ -14,6 +14,8 @@ class Prompt:
     """
 
     def __init__(self, template: str, rule_names: List[str] = None):
+        if not template:
+            raise ValueError("Prompt template cannot be None or empty")
         self.template = Template(template)
         self.rule_names = rule_names or []
 

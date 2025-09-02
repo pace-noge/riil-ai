@@ -4,7 +4,7 @@ Registry for dynamic step resolution.
 """
 
 from typing import Callable, Dict
-from eko.domain.step import Step
+from riil.domain.step import Step
 
 _step_factories: Dict[str, Callable] = {}
 

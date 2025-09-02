@@ -1,13 +1,13 @@
 [tool.poetry]
-name = "riil"
+name = "riil-ai"
 version = "0.1.0"
 description = "Lightweight AI workflow engine"
 authors = ["Nasaruddin"]
 readme = "README.md"
 
-# ✅ Only include existing package: eko
+# ✅ Only include existing package: riil
 [[tool.poetry.packages]]
-include = "eko"
+include = "riil"
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -15,6 +15,7 @@ openai = "^1.12"
 pydantic = "^2.5"
 typer = "^0.9"
 python-dotenv = "^1.0"
+PyYAML = "6.0.2"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.4.0"

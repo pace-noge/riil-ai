@@ -4,7 +4,7 @@ Use case: Execute a workflow with inputs.
 """
 
 from typing import Dict, Any
-from eko.domain.workflow import Workflow
+from riil.domain.workflow import Workflow
 
 
 async def execute_workflow(workflow: Workflow, inputs: Dict[str, Any]) -> Dict[str, Any]:
