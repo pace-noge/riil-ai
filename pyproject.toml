@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "eko-py"
+name = "riil"
 version = "0.1.0"
 description = "Lightweight AI workflow engine"
 authors = ["Nasaruddin"]
@@ -18,20 +18,21 @@ python-dotenv = "^1.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.4.0"
+pytest-asyncio = "^0.23.5"
 respx = "^0.22"          # ✅ Fixed: 0.22 is valid
 httpx = "^0.25"
 coverage = "^7.5"
 pytest-cov = "^4.1"
 
 [tool.poetry.scripts]
-eko = "eko.interface.cli:app"
+riil = "riil.interface.cli:app"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.coverage.run]
-source = ["eko"]
+source = ["riil"]
 omit = [
     "tests/*",
     "*/__init__.py"
@@ -57,8 +58,8 @@ include = '\.pyi?$'
 extend-exclude = []
 
 [tool.mypy]
-mypy_path = ["eko"]
-files = ["eko"]
+mypy_path = ["riil"]
+files = ["riil"]
 strict = true
 warn_unused_configs = true
 show_error_codes = true

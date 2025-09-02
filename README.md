@@ -1,4 +1,4 @@
-# 🚀 eko-py
+# 🚀 riil-py
 
 **Lightweight, extensible AI workflow engine**  
 Build and run AI pipelines with clean architecture, schema enforcement, and resilience.
@@ -9,8 +9,8 @@ Build and run AI pipelines with clean architecture, schema enforcement, and resi
 
 ## 📁 Project Structure
 ```shell
-eko/
-├── eko/
+riil-ai/
+├── riil/
 │   ├── domain/
 │   │   ├── __init__.py
 │   │   ├── step.py
@@ -66,8 +66,8 @@ eko/
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/eko-py.git
-cd eko-py
+git clone https://github.com/pace-noge/riil-ai.git
+cd rill-ai
 ```
 
 ### 2. Install Dependencies
@@ -115,7 +115,7 @@ poetry run pytest tests/test_infrastructure/test_openai.py
 ## 🚀 Usage
 Run the Example Workflow
 ```shell
-poetry run eko run-joke --topic="Python"
+poetry run riil run-joke --topic="Python"
 ```
 This runs:
 
@@ -149,7 +149,7 @@ Achieved:
 - SOLID-compliant design
 - Async Workflow engine
 - OpenAIStep with schema, repair, retry
-- CLI interface (eko run-joke)
+- CLI interface (riil run-joke)
 - Unit tests (90%+ coverage)
 - Future-ready for rules, RAG, FastAPI
 
@@ -189,4 +189,4 @@ ___
 - Designed for extensibility and production use
 
 ___
->"eko-py: Where AI workflows are simple, robust, and future-proof."
+>"riil-ai: Where AI workflows are simple, robust, and future-proof."
